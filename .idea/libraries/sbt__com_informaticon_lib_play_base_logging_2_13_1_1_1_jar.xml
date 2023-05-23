@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="sbt: com.informaticon:lib.play.base.logging_2.13:1.1.1:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/maven.devops.informaticon.com/com/informaticon/lib.play.base.logging_2.13/1.1.1/lib.play.base.logging_2.13-1.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/maven.devops.informaticon.com/com/informaticon/lib.play.base.logging_2.13/1.1.1/lib.play.base.logging_2.13-1.1.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/maven.devops.informaticon.com/com/informaticon/lib.play.base.logging_2.13/1.1.1/lib.play.base.logging_2.13-1.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

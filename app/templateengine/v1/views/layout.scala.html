@@ -1,0 +1,25 @@
+@this(header: header, footer: footer)
+@(content: Html)(implicit request: Http.Request)
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ä sittä</title>
+    </head>
+    <body>
+
+        <header style="background-color: #888;">
+            @header()
+        </header>
+
+        <main style="margin: 10px 0;">
+            @content
+        </main>
+
+        <footer style="background-color: #888;">
+            @footer()
+        </footer>
+
+    </body>
+</html>

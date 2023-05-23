@@ -1,0 +1,31 @@
+@import java.util.regex.Matcher
+
+@(elements: views.html.helper.FieldElements)
+
+@if(elements.args.contains(Symbol("hidden"))) {
+    @elements.input
+} else {
+    @defining(elements.args.get(Symbol("required"))) { required =>
+        <div class="ecp-input-container @if(elements.hasErrors) {error} @if(required) {required}">
+            @elements.args.get(Symbol("prepend"))
+            <div class="ecp-label">
+            @if(elements.hasName) {
+                @elements.name
+            } else {
+                <label for="@elements.id" title="@elements.infos.mkString(", ")">@elements.label</label>
+            }
+            </div>
+
+            @defining(elements.input.body.trim) { inputHtml =>
+                @if(inputHtml.startsWith("<input type=\"checkbox\"")) {
+                    @* Wrap the <span>...</span> with a label *@
+                    @Html(inputHtml.replaceFirst("<span>", Matcher.quoteReplacement("<label for=\"%s\"><span>".format(elements.id))) + "</label>")
+                } else {
+                    @elements.input
+                }
+            }
+            <div class="errors">@elements.errors.mkString(", ")</div>
+            @elements.args.get(Symbol("append"))
+        </div>
+    }
+}

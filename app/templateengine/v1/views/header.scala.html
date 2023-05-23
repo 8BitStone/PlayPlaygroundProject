@@ -1,0 +1,20 @@
+@import templateengine.v1.viewmodels.HeaderViewModel
+@import templateengine.v1.viewmodelfactories.HeaderViewModelFactory
+
+@this(headerViewModelFactory: HeaderViewModelFactory)
+@()(implicit request: Http.Request)
+
+@renderHeader(viewModel: HeaderViewModel) = {
+    @for(navItem <- viewModel.navPoints){
+        <a href="@navItem.call">
+            @if(navItem.isActive){
+                <b>@navItem.name</b>
+            }else{
+                @navItem.name
+            }
+        </a>
+        <br>
+    }
+}
+
+@renderHeader(headerViewModelFactory.buildViewModel(request))

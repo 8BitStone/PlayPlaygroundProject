@@ -1,0 +1,6 @@
+[debug] Copy resource mappings: 
+[debug] 	(C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\conf\application.conf,C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\target\scala-2.13\classes\application.conf)
+[debug] 	(C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\conf\logback.xml,C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\target\scala-2.13\classes\logback.xml)
+[debug] 	(C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\conf\routes,C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\target\scala-2.13\classes\routes)
+[debug] 	(C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\conf\evolutions\default\1.sql,C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\target\scala-2.13\classes\evolutions\default\1.sql)
+[debug] 	(C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\conf\evolutions\default\2.sql,C:\Users\kevin.riesen\Documents\PlayPlaygroundProject\target\scala-2.13\classes\evolutions\default\2.sql)

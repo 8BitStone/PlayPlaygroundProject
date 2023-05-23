@@ -1,0 +1,15 @@
+@import templateengine.v1.viewmodelfactories.ArticleListViewModelFactory
+@import templateengine.v1.viewmodels.ArticleListViewModel
+
+@this(layout: layout, articleListViewModelFactory: ArticleListViewModelFactory)
+@()(implicit request: Http.Request)
+
+@renderArticleList(articleListViewModel: ArticleListViewModel) = {
+    @for((id: UUID, name: String) <- articleListViewModel.getArticles.asScala){
+        @name (id: @id) <br/>
+    }
+}
+
+@layout{
+    @renderArticleList(articleListViewModelFactory.buildViewModel(request))
+}
