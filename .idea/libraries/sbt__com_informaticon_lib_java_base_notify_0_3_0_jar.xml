@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="sbt: com.informaticon:lib.java.base.notify:0.3.0:jar">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/maven.devops.informaticon.com/com/informaticon/lib.java.base.notify/0.3.0/lib.java.base.notify-0.3.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
