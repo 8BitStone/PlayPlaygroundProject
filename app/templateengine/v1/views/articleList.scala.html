@@ -8,6 +8,11 @@
     @for((id: UUID, name: String) <- articleListViewModel.getArticles.asScala){
         @name (id: @id) <br/>
     }
+
+    <form>
+        <input name="maxRows" type="number">
+        <button type="submit">Anzeigen</button>
+    </form>
 }
 
 @layout{
