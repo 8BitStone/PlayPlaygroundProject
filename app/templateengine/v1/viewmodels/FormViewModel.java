@@ -3,7 +3,7 @@ package templateengine.v1.viewmodels;
 import forms.SomeFormData;
 import play.data.Form;
 
-public class FormViewModel implements IViewModel{
+public class FormViewModel{
 
     private final Form<SomeFormData> form;
 

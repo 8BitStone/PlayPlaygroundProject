@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class ArticleListViewModel implements IViewModel{
+public class ArticleListViewModel{
     private final List<Article> articles;
 
     public ArticleListViewModel(List<Article> articles) {

@@ -4,7 +4,7 @@ import play.mvc.Call;
 
 import java.util.List;
 
-public class HeaderViewModel implements IViewModel{
+public class HeaderViewModel{
 
     public final List<NavPointViewModel> navPoints;
 
@@ -12,7 +12,7 @@ public class HeaderViewModel implements IViewModel{
         this.navPoints = navPoints;
     }
 
-    public static class NavPointViewModel implements IViewModel{
+    public static class NavPointViewModel{
         public final String name;
         public final Call call;
         public final boolean isActive;
