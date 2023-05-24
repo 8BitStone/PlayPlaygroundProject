@@ -12,8 +12,10 @@ import play.mvc.Result;
 import play.twirl.api.Content;
 import templateengine.v1.viewmodelfactories.FormViewModelFactory;
 import templateengine.v1.viewmodels.FormViewModel;
+import utils.Attrs;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
 @PublicRoute
 public class TemplateEngineV1Controller extends Controller {
@@ -41,6 +43,17 @@ public class TemplateEngineV1Controller extends Controller {
     }
 
     public Result articleList(Http.Request request){
+        request.queryString("maxRows")
+                .flatMap(value -> {
+                    try {
+                        return Optional.of(Integer.parseInt(value));
+                    }
+                    catch (NumberFormatException e) {
+                        return Optional.empty();
+                    }
+                })
+                .ifPresent(maxRows -> request.addAttr(Attrs.MAX_ROWS, maxRows));
+
         return ok(articleListView.render(request));
     }
 
