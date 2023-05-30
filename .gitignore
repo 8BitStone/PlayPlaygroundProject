@@ -19,7 +19,6 @@ data/
 
 /conf/evolutions/
 /conf/application.conf
-/conf/*routes
 /db/oidc*
 /db/i18n*
 /app/mirror
@@ -27,7 +26,6 @@ data/
 /db/oidc.*
 /db/i18n.*
 
-package.json
 package-lock.json
 
 /app/**/TemplateHelper.scala

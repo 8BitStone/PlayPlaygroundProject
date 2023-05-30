@@ -7,3 +7,7 @@ lazy val root = (project in file("."))
     testOptions in Test += Tests.Argument(TestFrameworks.JUnit, "-a", "-v"),
     javacOptions ++= Seq("-Xlint:unchecked", "-Xlint:deprecation", "-Werror")
   )
+
+WebpackKeys.webpackConfigs := Seq(
+    baseDirectory.value / "app" / "webpack" / "webpack.js",
+)
