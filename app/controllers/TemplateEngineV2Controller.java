@@ -2,6 +2,9 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.informaticon.lib.play.auth.annotations.PublicRoute;
+import forms.SomeFormData;
+import play.data.Form;
+import play.data.FormFactory;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -14,6 +17,7 @@ import templateengine.v2.viewmodelfactories.HeaderViewModelFactory;
 import templateengine.v2.templatecontext.ArticleListTemplateContext;
 import templateengine.v2.templatecontext.IndexTemplateContext;
 import templateengine.v2.viewmodels.FooterViewModel;
+import templateengine.v2.viewmodels.FormViewModel;
 import templateengine.v2.viewmodels.HeaderViewModel;
 import utils.Attrs;
 
@@ -22,6 +26,9 @@ import java.util.Optional;
 
 @PublicRoute
 public class TemplateEngineV2Controller extends Controller {
+
+    @Inject
+    public FormFactory formFactory;
 
     @Inject
     public templateengine.v2.views.html.svelteApp svelteAppView;
@@ -48,20 +55,26 @@ public class TemplateEngineV2Controller extends Controller {
     public FormViewModelFactory formViewModelFactory;
 
     public Result index(Http.Request request){
-        return ok(svelteAppView.render(indexTemplateContext, null));
+        return ok(svelteAppView.render(
+                indexTemplateContext,
+                null,
+                request
+        ));
     }
 
     public Result articleList(Http.Request request){
         return ok(svelteAppView.render(
                 articleListTemplateContext,
-                buildArticleListViewModel(request)
+                buildArticleListViewModel(request),
+                request
         ));
     }
 
     public Result form(Http.Request request){
         return ok(svelteAppView.render(
                 formTemplateContext,
-                Json.toJson(formViewModelFactory.buildViewModel(request))
+                Json.toJson(formViewModelFactory.buildViewModel(request)),
+                request
         ));
     }
 
@@ -70,7 +83,13 @@ public class TemplateEngineV2Controller extends Controller {
     }
 
     public Result formSubmit(Http.Request request){
-        return ok();
+        final Form<SomeFormData> form = formFactory.form(SomeFormData.class).bindFromRequest(request);
+        final FormViewModel viewModel = new FormViewModel(form);
+        final JsonNode json = Json.toJson(viewModel);
+        if(form.hasErrors()){
+            return badRequest(json);
+        }
+        return ok(json);
     }
 
     public Result headerData(Http.Request request){

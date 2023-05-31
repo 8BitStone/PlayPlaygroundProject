@@ -21,6 +21,6 @@ public class ArticleListViewModelFactory implements IViewModelFactory<ArticleLis
                 .map(article -> new ArticleListViewModel.ArticleListItemViewModel(article.ar1Uuid, article.ar1TitleMainTranslation))
                 .collect(Collectors.toList());
 
-        return new ArticleListViewModel(items);
+        return new ArticleListViewModel(items, maxRows);
     }
 }

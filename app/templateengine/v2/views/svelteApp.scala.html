@@ -1,7 +1,7 @@
 @import templateengine.v2.templatecontext.TemplateContext
 @import com.fasterxml.jackson.databind.JsonNode
 @this()
-@(templateContext: TemplateContext, viewModel: JsonNode)()
+@(templateContext: TemplateContext, viewModel: JsonNode)(implicit request: Http.RequestHeader)
 
 <!doctype html>
 <html>
@@ -11,6 +11,6 @@
 
         @templateContext.renderHeadElements()
     </head>
-    <body data-prop-view-model="@viewModel">
+    <body data-prop-view-model="@viewModel" data-prop-csrf-token="@helper.CSRF.getToken.value">
     </body>
 </html>

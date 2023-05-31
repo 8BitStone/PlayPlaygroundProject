@@ -1,13 +1,12 @@
 <script lang="ts">
     import AppLayout from "./AppLayout.svelte";
-    import {onMount} from "svelte";
 
-    let viewModel;
+    export let viewModel;
 
-    onMount(async () => {
-        const res = await fetch(`/te2/api/list`);
+    async function fetchData(){
+        const res = await fetch(`/te2/api/list?maxRows=` + viewModel.maxRows);
         viewModel = await res.json();
-    });
+    }
 </script>
 
 <AppLayout>
@@ -17,10 +16,8 @@
         {/each}
     {/if}
 
-    <form>
-        <input name="maxRows" type="number">
-        <button type="submit">Anzeigen</button>
-    </form>
+    <input bind:value={viewModel.maxRows} type="number">
+    <button on:click={fetchData}>Anzeigen</button>
 </AppLayout>
 
 <style lang="scss">

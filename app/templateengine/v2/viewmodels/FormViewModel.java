@@ -5,13 +5,9 @@ import play.data.Form;
 
 public class FormViewModel{
 
-    private final Form<SomeFormData> form;
+    public final Form<SomeFormData> form;
 
     public FormViewModel(Form<SomeFormData> form) {
         this.form = form;
-    }
-
-    public Form<SomeFormData> getForm(){
-        return form;
     }
 }

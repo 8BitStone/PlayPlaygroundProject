@@ -5,9 +5,11 @@ import java.util.UUID;
 
 public class ArticleListViewModel{
     public final List<ArticleListItemViewModel> articleItems;
+    public final int maxRows;
 
-    public ArticleListViewModel(List<ArticleListItemViewModel> articleItems) {
+    public ArticleListViewModel(List<ArticleListItemViewModel> articleItems, int maxRows) {
         this.articleItems = articleItems;
+        this.maxRows = maxRows;
     }
 
     public static class ArticleListItemViewModel{
