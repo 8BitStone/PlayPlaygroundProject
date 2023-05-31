@@ -1,16 +1,16 @@
+@import templateengine.v2.templatecontext.TemplateContext
+@import com.fasterxml.jackson.databind.JsonNode
 @this()
-@()()
+@(templateContext: TemplateContext, viewModel: JsonNode)()
 
 <!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Template Engine V2</title>
+        <title>@templateContext.getTitle</title>
 
-        <link rel="stylesheet" href="@routes.Assets.versioned("bundles/main.css")">
-        <script src="@routes.Assets.versioned("bundles/main.js")" defer></script>
+        @templateContext.renderHeadElements()
     </head>
-    <body>
-        <div id="svelte-anchor"></div>
+    <body data-prop-view-model="@viewModel">
     </body>
 </html>

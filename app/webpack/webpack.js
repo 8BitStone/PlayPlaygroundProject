@@ -6,7 +6,9 @@ const sass = require('svelte-preprocess-sass');
 module.exports = {
     mode: "development",
     entry: {
-        'main': './app/typescript/Loader.ts'
+        'index': './app/typescript/IndexLoader.ts',
+        'articleList': './app/typescript/ArticleListLoader.ts',
+        'form': './app/typescript/FormLoader.ts'
     },
     output: {
         path: path.resolve('./public/bundles'),
