@@ -5,6 +5,9 @@ import play.mvc.Http;
 import templateengine.v1.viewmodels.ArticleListViewModel;
 import utils.Attrs;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ArticleListViewModelFactory implements IViewModelFactory<ArticleListViewModel>{
 
     @Override
@@ -13,6 +16,11 @@ public class ArticleListViewModelFactory implements IViewModelFactory<ArticleLis
                 .getOptional(Attrs.MAX_ROWS)
                 .orElse(10);
 
-        return new ArticleListViewModel(Article.findAll(maxRows));
+        final List<ArticleListViewModel.ArticleListItemViewModel> items = Article.findAll(maxRows)
+                .stream()
+                .map(article -> new ArticleListViewModel.ArticleListItemViewModel(article.ar1Uuid, article.ar1TitleMainTranslation))
+                .collect(Collectors.toList());
+
+        return new ArticleListViewModel(items, maxRows);
     }
 }

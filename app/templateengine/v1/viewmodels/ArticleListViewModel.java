@@ -1,21 +1,24 @@
 package templateengine.v1.viewmodels;
 
-import models.ebean.Article;
-
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class ArticleListViewModel{
-    private final List<Article> articles;
+    public final List<ArticleListItemViewModel> articleItems;
+    public final int maxRows;
 
-    public ArticleListViewModel(List<Article> articles) {
-        this.articles = articles;
+    public ArticleListViewModel(List<ArticleListItemViewModel> articleItems, int maxRows) {
+        this.articleItems = articleItems;
+        this.maxRows = maxRows;
     }
 
-    public Map<UUID, String> getArticles(){
-        return articles.stream()
-                .collect(Collectors.toMap(a -> a.ar1Uuid, a -> a.ar1TitleMainTranslation));
+    public static class ArticleListItemViewModel{
+        public final UUID uuid;
+        public final String name;
+
+        public ArticleListItemViewModel(UUID uuid, String name) {
+            this.uuid = uuid;
+            this.name = name;
+        }
     }
 }

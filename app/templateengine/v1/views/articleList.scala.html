@@ -5,8 +5,8 @@
 @()(implicit request: Http.Request)
 
 @renderArticleList(articleListViewModel: ArticleListViewModel) = {
-    @for((id: UUID, name: String) <- articleListViewModel.getArticles.asScala){
-        @name (id: @id) <br/>
+    @for(articleItem : ArticleListViewModel.ArticleListItemViewModel <- articleListViewModel.articleItems){
+        @articleItem.name (id: @articleItem.uuid) <br/>
     }
 
     <form>
