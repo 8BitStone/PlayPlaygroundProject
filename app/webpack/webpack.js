@@ -1,7 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const sveltePreprocess = require('svelte-preprocess');
-const sass = require('svelte-preprocess-sass');
 
 module.exports = {
     mode: "development",
@@ -26,30 +25,20 @@ module.exports = {
                 use: {
                     loader: 'svelte-loader',
                     options: {
-                        emitCss: true,
+                        onwarn: (warning, handler) => { //blocks warnings for unused css classes in svelte
+                            const { code, frame } = warning;
+                            if (code === "css-unused-selector")
+                                return;
+                            handler(warning);
+                        },
                         preprocess: sveltePreprocess({
-                            style: sass.sass({
-                                },
-                                {
-                                    name: 'scss',
-                                }),
-                            scss: {
-                                // We can use a path relative to the root because
-                                // svelte-preprocess automatically adds it to `includePaths`
-                                // if none is defined.
-                                // prependData: `@import './app/templateengine/v2/svelte/stylesheets/var.scss';`,
-                            },
                             typescript: {
-                                // compilerOptions: {
-                                //     "module": "ES6",
-                                //     "moduleResolution": "classic"
-                                // }
+                                compilerOptions: {
+                                    "module": "ES6",
+                                    "moduleResolution": "classic"
+                                }
                             }
                         }),
-                        // //TODO
-                        // includePaths: [
-                        //     path.resolve( './app/com/informaticon/svelte/example/stylesheets/var.scss')
-                        // ]
                     },
                 },
             },
@@ -58,29 +47,15 @@ module.exports = {
                 test: /\.(sa|sc|c)ss$/,
                 exclude: /node_modules/,
                 use: [
-                    'raw-loader',
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                    },
-                    'css-loader?url=false',
-                    {
-                        loader: "sass-loader",
-                        //TODO
-                        // options: {
-                        //     sassOptions: {
-                        //         indentWidth: 4,
-                        //         includePaths: [path.resolve("/app/com/informaticon/svelte/example/stylesheets")],
-                        //     }
-                        // },
-                    }
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
                 ]
             },
 
             {
                 test: /\.ts$/,
-                use: [{
-                    loader: 'ts-loader'
-                }]
+                use: 'ts-loader'
             }
         ]
     },
