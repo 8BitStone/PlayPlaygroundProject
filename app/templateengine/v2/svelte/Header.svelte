@@ -4,7 +4,7 @@
     let viewModel;
 
     onMount(async () => {
-        const res = await fetch(`/te2/api/header`);
+        const res = await fetch(`/te2/api/header?page=` + window.location.pathname);
         viewModel = await res.json();
     });
 </script>

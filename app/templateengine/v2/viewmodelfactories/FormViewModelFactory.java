@@ -12,14 +12,21 @@ public class FormViewModelFactory implements IViewModelFactory<FormViewModel> {
 
     private final FormFactory formFactory;
 
+    private Form<SomeFormData> form;
+
     @Inject
     public FormViewModelFactory(FormFactory formFactory) {
         this.formFactory = formFactory;
     }
 
     @Override
-    public FormViewModel buildViewModel(Http.Request request) {
-        final Form<SomeFormData> form = formFactory.form(SomeFormData.class).bindFromRequest(request);
+    public IViewModelFactory<FormViewModel> gatherData(Http.Request request) {
+        form = formFactory.form(SomeFormData.class).bindFromRequest(request);
+        return this;
+    }
+
+    @Override
+    public FormViewModel buildViewModel() {
         return new FormViewModel(form);
     }
 }

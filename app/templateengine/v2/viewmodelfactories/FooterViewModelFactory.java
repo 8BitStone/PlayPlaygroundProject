@@ -5,8 +5,14 @@ import play.mvc.Http;
 import templateengine.v2.viewmodels.FooterViewModel;
 
 public class FooterViewModelFactory implements IViewModelFactory<FooterViewModel> {
+
     @Override
-    public FooterViewModel buildViewModel(Http.Request request) {
+    public IViewModelFactory<FooterViewModel> gatherData(Http.Request request) {
+       return this;
+    }
+
+    @Override
+    public FooterViewModel buildViewModel() {
         final String adrName = Address.findFirstAddress()
                 .map(a -> a.a1Name)
                 .orElse("-");

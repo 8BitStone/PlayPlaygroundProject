@@ -65,7 +65,7 @@ public class TemplateEngineV2Controller extends Controller {
     public Result articleList(Http.Request request){
         return ok(svelteAppView.render(
                 articleListTemplateContext,
-                buildArticleListViewModel(request),
+                Json.toJson(articleListViewModelFactory.gatherData(request).buildViewModel()),
                 request
         ));
     }
@@ -73,13 +73,13 @@ public class TemplateEngineV2Controller extends Controller {
     public Result form(Http.Request request){
         return ok(svelteAppView.render(
                 formTemplateContext,
-                Json.toJson(formViewModelFactory.buildViewModel(request)),
+                Json.toJson(formViewModelFactory.gatherData(request).buildViewModel()),
                 request
         ));
     }
 
     public Result listData(Http.Request request){
-        return ok(buildArticleListViewModel(request));
+        return ok(Json.toJson(articleListViewModelFactory.gatherData(request).buildViewModel()));
     }
 
     public Result formSubmit(Http.Request request){
@@ -93,29 +93,14 @@ public class TemplateEngineV2Controller extends Controller {
     }
 
     public Result headerData(Http.Request request){
-        final HeaderViewModel viewModel = headerViewModelFactory.buildViewModel(request);
+        final HeaderViewModel viewModel = headerViewModelFactory.gatherData(request).buildViewModel();
         final JsonNode json = Json.toJson(viewModel);
         return ok(json);
     }
 
     public Result footerData(Http.Request request){
-        final FooterViewModel viewModel = footerViewModelFactory.buildViewModel(request);
+        final FooterViewModel viewModel = footerViewModelFactory.gatherData(request).buildViewModel();
         final JsonNode json = Json.toJson(viewModel);
         return ok(json);
-    }
-
-    protected JsonNode buildArticleListViewModel(Http.Request request){
-        final Http.Request requestWithAttr = request.queryString("maxRows")
-                .flatMap(value -> {
-                    try {
-                        return Optional.of(Integer.parseInt(value));
-                    }
-                    catch (NumberFormatException e) {
-                        return Optional.empty();
-                    }
-                })
-                .map(maxRows -> request.addAttr(Attrs.MAX_ROWS, maxRows))
-                .orElse(request);
-        return Json.toJson(articleListViewModelFactory.buildViewModel(requestWithAttr));
     }
 }
