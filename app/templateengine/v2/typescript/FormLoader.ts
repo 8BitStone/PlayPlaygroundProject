@@ -1,4 +1,4 @@
-import Form from '../templateengine/v2/svelte/Form.svelte';
+import Form from '../svelte/Form.svelte';
 import {parseCsrfTokenValue, parseViewModelDataAsJson} from "./Utils";
 
 const svelteElement = document.querySelector('body');

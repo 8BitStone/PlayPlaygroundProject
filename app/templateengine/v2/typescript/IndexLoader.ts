@@ -1,4 +1,4 @@
-import Index from '../templateengine/v2/svelte/Index.svelte';
+import Index from '../svelte/Index.svelte';
 
 const svelteElement = document.querySelector('body');
 if (svelteElement !== null) {

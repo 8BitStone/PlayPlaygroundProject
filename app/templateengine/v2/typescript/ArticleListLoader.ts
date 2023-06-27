@@ -1,4 +1,4 @@
-import ArticleList from '../templateengine/v2/svelte/ArticleList.svelte';
+import ArticleList from '../svelte/ArticleList.svelte';
 import {parseViewModelDataAsJson} from "./Utils";
 
 const svelteElement = document.querySelector('body');

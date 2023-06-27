@@ -5,9 +5,9 @@ const sveltePreprocess = require('svelte-preprocess');
 module.exports = {
     mode: "development",
     entry: {
-        'index': './app/typescript/IndexLoader.ts',
-        'articleList': './app/typescript/ArticleListLoader.ts',
-        'form': './app/typescript/FormLoader.ts'
+        'index': './app/templateengine/v2/typescript/IndexLoader.ts',
+        'articleList': './app/templateengine/v2/typescript/ArticleListLoader.ts',
+        'form': './app/templateengine/v2/typescript/FormLoader.ts'
     },
     output: {
         path: path.resolve('./public/bundles'),
