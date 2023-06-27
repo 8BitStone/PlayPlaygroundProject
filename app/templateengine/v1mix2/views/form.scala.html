@@ -1,0 +1,20 @@
+@import forms.SomeFormData
+@import templateengine.v1mix2.viewmodelfactories.FormViewModelFactory
+@import templateengine.v1mix2.viewmodels.FormViewModel
+
+@this(layout: layout)
+@(viewModel: FormViewModel)(implicit request: Http.Request, messages: play.i18n.Messages)
+
+@implicitField = @{helper.FieldConstructor(views.html.fieldConstructor.f)}
+
+@renderForm(form: Form[SomeFormData]) = {
+    @helper.form(routes.TemplateEngineV1Mix2Controller.formSubmit()){
+        @helper.CSRF.formField
+        @helper.inputText(form("someString"))
+        <button type="submit">Submit</button>
+    }
+}
+
+@layout {
+    @renderForm(viewModel.getForm)
+}

@@ -1,0 +1,20 @@
+@import templateengine.v1mix2.viewmodelfactories.ArticleListViewModelFactory
+@import templateengine.v1mix2.viewmodels.ArticleListViewModel
+
+@this(layout: layout, articleListViewModelFactory: ArticleListViewModelFactory)
+@()(implicit request: Http.Request)
+
+@renderArticleList(articleListViewModel: ArticleListViewModel) = {
+    @for(articleItem : ArticleListViewModel.ArticleListItemViewModel <- articleListViewModel.articleItems){
+        @articleItem.name (id: @articleItem.uuid) <br/>
+    }
+
+    <form>
+        <input name="maxRows" type="number">
+        <button type="submit">Anzeigen</button>
+    </form>
+}
+
+@layout{
+    @renderArticleList(articleListViewModelFactory.buildViewModel(request))
+}

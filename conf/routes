@@ -4,6 +4,12 @@ GET     /te1/list         controllers.TemplateEngineV1Controller.articleList(req
 GET     /te1/form         controllers.TemplateEngineV1Controller.form(request: Request)
 POST    /te1/form         controllers.TemplateEngineV1Controller.formSubmit(request: Request)
 
+GET     /te12              controllers.TemplateEngineV1Mix2Controller.index(request: Request)
+GET     /te12/list         controllers.TemplateEngineV1Mix2Controller.articleList(request: Request)
+GET     /te12/form         controllers.TemplateEngineV1Mix2Controller.form(request: Request)
+POST    /te12/form         controllers.TemplateEngineV1Mix2Controller.formSubmit(request: Request)
+GET     /te12/api/header   controllers.TemplateEngineV1Mix2Controller.headerData(request: Request)
+
 GET     /te2              controllers.TemplateEngineV2Controller.index(request: Request)
 GET     /te2/list         controllers.TemplateEngineV2Controller.articleList(request: Request)
 GET     /te2/form         controllers.TemplateEngineV2Controller.form(request: Request)

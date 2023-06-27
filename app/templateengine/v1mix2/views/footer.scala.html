@@ -1,0 +1,12 @@
+@import templateengine.v1mix2.viewmodelfactories.FooterViewModelFactory
+@import templateengine.v1mix2.viewmodels.FooterViewModel
+
+@this(viewModelFactory: FooterViewModelFactory)
+@()(implicit request: Http.Request)
+
+@renderFooter(viewModel: FooterViewModel) = {
+    <div><b>- Footer -</b></div>
+    <div>Best Customer: @viewModel.primeAddressName</div>
+}
+
+@renderFooter(viewModelFactory.buildViewModel(request))

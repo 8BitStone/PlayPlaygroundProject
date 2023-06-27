@@ -5,9 +5,10 @@ const sveltePreprocess = require('svelte-preprocess');
 module.exports = {
     mode: "development",
     entry: {
-        'index': './app/templateengine/v2/typescript/IndexLoader.ts',
-        'articleList': './app/templateengine/v2/typescript/ArticleListLoader.ts',
-        'form': './app/templateengine/v2/typescript/FormLoader.ts'
+        'v1mix2.header': './app/templateengine/v1mix2/typescript/HeaderLoader.ts',
+        'v2.index': './app/templateengine/v2/typescript/IndexLoader.ts',
+        'v2.articleList': './app/templateengine/v2/typescript/ArticleListLoader.ts',
+        'v2.form': './app/templateengine/v2/typescript/FormLoader.ts'
     },
     output: {
         path: path.resolve('./public/bundles'),
