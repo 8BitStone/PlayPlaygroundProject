@@ -1,10 +1,14 @@
 package templateengine.v2.viewmodels;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 import java.util.UUID;
 
 public class ArticleListViewModel{
+    @JsonProperty("article_items")
     public final List<ArticleListItemViewModel> articleItems;
+    @JsonProperty("max_rows")
     public final int maxRows;
 
     public ArticleListViewModel(List<ArticleListItemViewModel> articleItems, int maxRows) {
