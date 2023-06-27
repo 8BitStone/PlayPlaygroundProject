@@ -20,7 +20,7 @@ public class FormViewModelFactory implements IViewModelFactory<FormViewModel> {
     }
 
     @Override
-    public IViewModelFactory<FormViewModel> gatherData(Http.Request request) {
+    public IViewModelFactory<FormViewModel> collectData(Http.Request request) {
         form = formFactory.form(SomeFormData.class).bindFromRequest(request);
         return this;
     }

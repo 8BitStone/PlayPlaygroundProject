@@ -15,7 +15,7 @@ public class HeaderViewModelFactory implements IViewModelFactory<HeaderViewModel
     protected String currentCalledPath;
 
     @Override
-    public IViewModelFactory<HeaderViewModel> gatherData(Http.Request request){
+    public IViewModelFactory<HeaderViewModel> collectData(Http.Request request){
         currentCalledPath = request.queryString("page")
                 .orElse("invalidPath");
 

@@ -14,7 +14,7 @@ public class ArticleListViewModelFactory implements IViewModelFactory<ArticleLis
     private int maxRows;
 
     @Override
-    public IViewModelFactory<ArticleListViewModel> gatherData(Http.Request request) {
+    public IViewModelFactory<ArticleListViewModel> collectData(Http.Request request) {
         maxRows = request.queryString("maxRows")
                 .flatMap(value -> {
                     try {

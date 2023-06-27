@@ -7,7 +7,7 @@ import templateengine.v2.viewmodels.FooterViewModel;
 public class FooterViewModelFactory implements IViewModelFactory<FooterViewModel> {
 
     @Override
-    public IViewModelFactory<FooterViewModel> gatherData(Http.Request request) {
+    public IViewModelFactory<FooterViewModel> collectData(Http.Request request) {
        return this;
     }
 

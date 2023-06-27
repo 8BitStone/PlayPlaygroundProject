@@ -19,10 +19,8 @@ import templateengine.v2.templatecontext.IndexTemplateContext;
 import templateengine.v2.viewmodels.FooterViewModel;
 import templateengine.v2.viewmodels.FormViewModel;
 import templateengine.v2.viewmodels.HeaderViewModel;
-import utils.Attrs;
 
 import javax.inject.Inject;
-import java.util.Optional;
 
 @PublicRoute
 public class TemplateEngineV2Controller extends Controller {
@@ -65,7 +63,7 @@ public class TemplateEngineV2Controller extends Controller {
     public Result articleList(Http.Request request){
         return ok(svelteAppView.render(
                 articleListTemplateContext,
-                Json.toJson(articleListViewModelFactory.gatherData(request).buildViewModel()),
+                Json.toJson(articleListViewModelFactory.collectData(request).buildViewModel()),
                 request
         ));
     }
@@ -73,13 +71,13 @@ public class TemplateEngineV2Controller extends Controller {
     public Result form(Http.Request request){
         return ok(svelteAppView.render(
                 formTemplateContext,
-                Json.toJson(formViewModelFactory.gatherData(request).buildViewModel()),
+                Json.toJson(formViewModelFactory.collectData(request).buildViewModel()),
                 request
         ));
     }
 
     public Result listData(Http.Request request){
-        return ok(Json.toJson(articleListViewModelFactory.gatherData(request).buildViewModel()));
+        return ok(Json.toJson(articleListViewModelFactory.collectData(request).buildViewModel()));
     }
 
     public Result formSubmit(Http.Request request){
@@ -93,13 +91,13 @@ public class TemplateEngineV2Controller extends Controller {
     }
 
     public Result headerData(Http.Request request){
-        final HeaderViewModel viewModel = headerViewModelFactory.gatherData(request).buildViewModel();
+        final HeaderViewModel viewModel = headerViewModelFactory.collectData(request).buildViewModel();
         final JsonNode json = Json.toJson(viewModel);
         return ok(json);
     }
 
     public Result footerData(Http.Request request){
-        final FooterViewModel viewModel = footerViewModelFactory.gatherData(request).buildViewModel();
+        final FooterViewModel viewModel = footerViewModelFactory.collectData(request).buildViewModel();
         final JsonNode json = Json.toJson(viewModel);
         return ok(json);
     }
